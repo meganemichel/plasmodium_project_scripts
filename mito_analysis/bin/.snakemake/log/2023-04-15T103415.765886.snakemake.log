@@ -1,0 +1,41 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	1	format_fasta
+	1	gather_vcfs
+	1	low_cov_calc
+	4
+
+[Sat Apr 15 10:34:17 2023]
+rule gather_vcfs:
+    input: eager/multivcfanalyzer/snpTable.tsv.gz, eager/multivcfanalyzer/snpAlignment.fasta.gz
+    output: multivcf_out/snpTable.tsv, multivcf_out/snpAlignment.fasta
+    jobid: 3
+
+[Sat Apr 15 10:34:18 2023]
+Finished job 3.
+1 of 4 steps (25%) done
+
+[Sat Apr 15 10:34:18 2023]
+rule format_fasta:
+    input: multivcf_out/snpTable.tsv, multivcf_out/snpAlignment.fasta
+    output: alignments/fullAlignment_noReference.fasta
+    jobid: 2
+
+[Sat Apr 15 10:34:19 2023]
+Finished job 2.
+2 of 4 steps (50%) done
+
+[Sat Apr 15 10:34:19 2023]
+rule low_cov_calc:
+    input: alignments/fullAlignment_noReference.fasta
+    output: low_cov_samples.txt, nuc_freq.txt
+    jobid: 1
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /mnt/archgen/users/michel/plasmodium/08-phylogeny/plasmodium_phylogenies/bin/.snakemake/log/2023-04-15T103415.765886.snakemake.log

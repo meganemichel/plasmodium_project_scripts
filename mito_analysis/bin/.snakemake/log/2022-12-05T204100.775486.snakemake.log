@@ -1,0 +1,66 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	add_trait_data
+	1	alignment_filter
+	1	all
+	1	make_nexus
+	1	remove_bad_samples
+	1	snp_only
+	6
+
+[Mon Dec  5 20:41:12 2022]
+rule remove_bad_samples:
+    input: low_cov_samples.txt, alignments/snpTable.tsv
+    output: alignments/snpTable/snpTable_exclude_lowcov_indivs.tsv
+    jobid: 5
+
+Removing temporary output file low_cov_samples.txt.
+Removing temporary output file alignments/snpTable.tsv.
+[Mon Dec  5 20:41:14 2022]
+Finished job 5.
+1 of 6 steps (17%) done
+
+[Mon Dec  5 20:41:14 2022]
+rule alignment_filter:
+    input: alignments/snpTable/snpTable_exclude_lowcov_indivs.tsv
+    output: alignments/partial_deletion_filter
+    jobid: 4
+
+[Mon Dec  5 20:41:19 2022]
+Finished job 4.
+2 of 6 steps (33%) done
+
+[Mon Dec  5 20:41:19 2022]
+rule snp_only:
+    input: alignments/partial_deletion_filter
+    output: alignments/final, tmp.tsv
+    jobid: 3
+
+Removing temporary output file tmp.tsv.
+[Mon Dec  5 20:41:48 2022]
+Finished job 3.
+3 of 6 steps (50%) done
+
+[Mon Dec  5 20:41:48 2022]
+rule make_nexus:
+    input: alignments/final
+    output: filtered_snp_alignment.nex
+    jobid: 2
+
+[Mon Dec  5 20:41:49 2022]
+Finished job 2.
+4 of 6 steps (67%) done
+
+[Mon Dec  5 20:41:49 2022]
+rule add_trait_data:
+    input: filtered_snp_alignment.nex
+    output: nexus_final.nex
+    jobid: 1
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /mnt/archgen/users/michel/plasmodium/08-phylogeny/plasmodium_phylogenies/bin/.snakemake/log/2022-12-05T204100.775486.snakemake.log

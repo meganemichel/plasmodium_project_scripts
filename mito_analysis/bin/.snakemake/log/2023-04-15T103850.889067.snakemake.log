@@ -1,0 +1,4 @@
+AttributeError in line 59 of /mnt/archgen/users/michel/plasmodium/08-phylogeny/plasmodium_phylogenies/bin/snakefiles/nexus.smk:
+'Rules' object has no attribute 'unzip_files'
+  File "/mnt/archgen/users/michel/plasmodium/08-phylogeny/plasmodium_phylogenies/bin/plasmodium_mito.smk", line 30, in <module>
+  File "/mnt/archgen/users/michel/plasmodium/08-phylogeny/plasmodium_phylogenies/bin/snakefiles/nexus.smk", line 59, in <module>

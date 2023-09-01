@@ -1,0 +1,19 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	add_trait_data
+	1	alignment_filter
+	1	all
+	1	format_fasta
+	1	gather_vcfs
+	1	low_cov_calc
+	1	make_nexus
+	1	remove_bad_samples
+	1	run_nfcore
+	1	snp_only
+	10
+Terminating processes on user request, this might take some time.
+Complete log: /mnt/archgen/users/michel/plasmodium/08-phylogeny/plasmodium_phylogenies/bin/.snakemake/log/2023-05-21T170333.078855.snakemake.log

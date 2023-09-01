@@ -1,0 +1,111 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	add_trait_data
+	1	alignment_filter
+	1	all
+	1	format_fasta
+	1	gather_vcfs
+	1	low_cov_calc
+	1	make_nexus
+	1	remove_bad_samples
+	1	snp_only
+	9
+
+[Sun May 21 17:10:05 2023]
+rule gather_vcfs:
+    input: eager/multivcfanalyzer/snpTable.tsv.gz, eager/multivcfanalyzer/snpAlignment.fasta.gz
+    output: multivcf_out/snpTable.tsv, multivcf_out/snpAlignment.fasta
+    jobid: 7
+
+[Sun May 21 17:10:07 2023]
+Finished job 7.
+1 of 9 steps (11%) done
+
+[Sun May 21 17:10:07 2023]
+rule format_fasta:
+    input: multivcf_out/snpTable.tsv, multivcf_out/snpAlignment.fasta
+    output: alignments/fullAlignment_noReference.fasta
+    jobid: 8
+
+[Sun May 21 17:10:11 2023]
+Finished job 8.
+2 of 9 steps (22%) done
+
+[Sun May 21 17:10:11 2023]
+rule low_cov_calc:
+    input: alignments/fullAlignment_noReference.fasta
+    output: low_cov_samples.txt, nuc_freq.txt
+    jobid: 6
+
+Removing temporary output file alignments/fullAlignment_noReference.fasta.
+Removing temporary output file nuc_freq.txt.
+[Sun May 21 17:10:14 2023]
+Finished job 6.
+3 of 9 steps (33%) done
+
+[Sun May 21 17:10:14 2023]
+rule remove_bad_samples:
+    input: low_cov_samples.txt, multivcf_out/snpTable.tsv
+    output: alignments/snpTable/snpTable_exclude_lowcov_indivs.tsv
+    jobid: 5
+
+Removing temporary output file low_cov_samples.txt.
+[Sun May 21 17:10:16 2023]
+Finished job 5.
+4 of 9 steps (44%) done
+
+[Sun May 21 17:10:16 2023]
+rule alignment_filter:
+    input: alignments/snpTable/snpTable_exclude_lowcov_indivs.tsv
+    output: alignments/partial_deletion_filter
+    jobid: 4
+
+[Sun May 21 17:10:23 2023]
+Finished job 4.
+5 of 9 steps (56%) done
+
+[Sun May 21 17:10:23 2023]
+rule snp_only:
+    input: alignments/partial_deletion_filter
+    output: alignments/final, tmp.tsv
+    jobid: 3
+
+Removing temporary output file tmp.tsv.
+[Sun May 21 17:10:26 2023]
+Finished job 3.
+6 of 9 steps (67%) done
+
+[Sun May 21 17:10:26 2023]
+rule make_nexus:
+    input: alignments/final
+    output: filtered_snp_alignment.nex
+    jobid: 2
+
+[Sun May 21 17:10:29 2023]
+Finished job 2.
+7 of 9 steps (78%) done
+
+[Sun May 21 17:10:29 2023]
+rule add_trait_data:
+    input: filtered_snp_alignment.nex
+    output: nexus_final.nex
+    jobid: 1
+
+Removing temporary output file filtered_snp_alignment.nex.
+[Sun May 21 17:10:34 2023]
+Finished job 1.
+8 of 9 steps (89%) done
+
+[Sun May 21 17:10:34 2023]
+localrule all:
+    input: nexus_final.nex
+    jobid: 0
+
+[Sun May 21 17:10:34 2023]
+Finished job 0.
+9 of 9 steps (100%) done
+Complete log: /mnt/archgen/users/michel/plasmodium/08-phylogeny/plasmodium_phylogenies/bin/.snakemake/log/2023-05-21T170957.638670.snakemake.log

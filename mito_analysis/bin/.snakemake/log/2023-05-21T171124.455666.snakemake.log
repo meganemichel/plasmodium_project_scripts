@@ -1,0 +1,4 @@
+KeyError in line 23 of /mnt/archgen/users/michel/plasmodium/08-phylogeny/plasmodium_phylogenies/bin/snakefiles/eager.smk:
+'SSLIB_vcfs'
+  File "/mnt/archgen/users/michel/plasmodium/08-phylogeny/plasmodium_phylogenies/bin/plasmodium_mito.smk", line 29, in <module>
+  File "/mnt/archgen/users/michel/plasmodium/08-phylogeny/plasmodium_phylogenies/bin/snakefiles/eager.smk", line 23, in <module>

@@ -1,0 +1,4 @@
+AttributeError in line 39 of /mnt/archgen/users/michel/plasmodium/08-phylogeny/plasmodium_phylogenies/bin/snakefiles/nexus.smk:
+'Namedlist' object has no attribute 'snpAlignment'
+  File "/mnt/archgen/users/michel/plasmodium/08-phylogeny/plasmodium_phylogenies/bin/plasmodium_mito.smk", line 30, in <module>
+  File "/mnt/archgen/users/michel/plasmodium/08-phylogeny/plasmodium_phylogenies/bin/snakefiles/nexus.smk", line 39, in <module>

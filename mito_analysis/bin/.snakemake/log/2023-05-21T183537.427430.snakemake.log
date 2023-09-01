@@ -1,0 +1,58 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	add_trait_data
+	1	alignment_filter
+	1	all
+	1	format_fasta
+	1	gather_vcfs
+	1	low_cov_calc
+	1	make_nexus
+	1	remove_bad_samples
+	1	snp_only
+	9
+
+[Sun May 21 18:35:47 2023]
+rule gather_vcfs:
+    input: eager/multivcfanalyzer/snpTable.tsv.gz, eager/multivcfanalyzer/snpAlignment.fasta.gz
+    output: multivcf_out/snpTable.tsv, multivcf_out/snpAlignment.fasta
+    jobid: 7
+
+[Sun May 21 18:35:50 2023]
+Finished job 7.
+1 of 9 steps (11%) done
+
+[Sun May 21 18:35:50 2023]
+rule format_fasta:
+    input: multivcf_out/snpTable.tsv, multivcf_out/snpAlignment.fasta
+    output: alignments/fullAlignment_noReference.fasta
+    jobid: 8
+
+[Sun May 21 18:35:56 2023]
+Finished job 8.
+2 of 9 steps (22%) done
+
+[Sun May 21 18:35:56 2023]
+rule low_cov_calc:
+    input: alignments/fullAlignment_noReference.fasta
+    output: low_cov_samples.txt, nuc_freq.txt
+    jobid: 6
+
+Removing temporary output file alignments/fullAlignment_noReference.fasta.
+Removing temporary output file nuc_freq.txt.
+[Sun May 21 18:36:00 2023]
+Finished job 6.
+3 of 9 steps (33%) done
+
+[Sun May 21 18:36:00 2023]
+rule remove_bad_samples:
+    input: low_cov_samples.txt, multivcf_out/snpTable.tsv
+    output: alignments/snpTable/snpTable_exclude_lowcov_indivs.tsv
+    jobid: 5
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /mnt/archgen/users/michel/plasmodium/08-phylogeny/plasmodium_phylogenies/bin/.snakemake/log/2023-05-21T183537.427430.snakemake.log

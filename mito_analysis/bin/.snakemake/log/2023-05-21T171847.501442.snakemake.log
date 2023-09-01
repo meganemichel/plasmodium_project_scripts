@@ -1,0 +1,4 @@
+KeyError in line 36 of /mnt/archgen/users/michel/plasmodium/08-phylogeny/plasmodium_phylogenies/bin/snakefiles/nexus.smk:
+'MISSINGNESS_THRESHOLD'
+  File "/mnt/archgen/users/michel/plasmodium/08-phylogeny/plasmodium_phylogenies/bin/plasmodium_mito.smk", line 30, in <module>
+  File "/mnt/archgen/users/michel/plasmodium/08-phylogeny/plasmodium_phylogenies/bin/snakefiles/nexus.smk", line 36, in <module>

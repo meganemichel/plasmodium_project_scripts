@@ -1,0 +1,110 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	1	fasta_split
+	1	format_fasta
+	6	genome_to_read
+	1	low_cov_calc
+	1	ncbi_download
+	1	run_nfcore
+	12
+
+[Sat Apr 15 09:44:09 2023]
+rule ncbi_download:
+    output: temp.gb, concat.fa
+    jobid: 11
+
+Removing temporary output file temp.gb.
+[Sat Apr 15 09:44:13 2023]
+Finished job 11.
+1 of 12 steps (8%) done
+
+[Sat Apr 15 09:44:13 2023]
+rule fasta_split:
+    input: concat.fa
+    output: input_files/sample_fastas/NC_028626.1.fa, input_files/sample_fastas/NC_007243.1.fa, input_files/sample_fastas/MZ666366.1.fa, input_files/sample_fastas/MZ440348.1.fa, input_files/sample_fastas/KY923424.1.fa, input_files/sample_fastas/LT841393.1.fa
+    jobid: 10
+
+[Sat Apr 15 09:44:13 2023]
+Finished job 10.
+2 of 12 steps (17%) done
+
+[Sat Apr 15 09:44:13 2023]
+rule genome_to_read:
+    input: input_files/sample_fastas/LT841393.1.fa
+    output: input_files/genome_to_read/LT841393.1_reads.fastq.gz
+    jobid: 9
+    wildcards: sample=LT841393.1
+
+
+[Sat Apr 15 09:44:13 2023]
+rule genome_to_read:
+    input: input_files/sample_fastas/MZ666366.1.fa
+    output: input_files/genome_to_read/MZ666366.1_reads.fastq.gz
+    jobid: 6
+    wildcards: sample=MZ666366.1
+
+
+[Sat Apr 15 09:44:13 2023]
+rule genome_to_read:
+    input: input_files/sample_fastas/NC_007243.1.fa
+    output: input_files/genome_to_read/NC_007243.1_reads.fastq.gz
+    jobid: 5
+    wildcards: sample=NC_007243.1
+
+
+[Sat Apr 15 09:44:13 2023]
+rule genome_to_read:
+    input: input_files/sample_fastas/MZ440348.1.fa
+    output: input_files/genome_to_read/MZ440348.1_reads.fastq.gz
+    jobid: 7
+    wildcards: sample=MZ440348.1
+
+[Sat Apr 15 09:44:13 2023]
+Finished job 6.
+3 of 12 steps (25%) done
+[Sat Apr 15 09:44:13 2023]
+Finished job 9.
+4 of 12 steps (33%) done
+[Sat Apr 15 09:44:13 2023]
+Finished job 5.
+5 of 12 steps (42%) done
+[Sat Apr 15 09:44:13 2023]
+Finished job 7.
+6 of 12 steps (50%) done
+
+[Sat Apr 15 09:44:13 2023]
+rule genome_to_read:
+    input: input_files/sample_fastas/KY923424.1.fa
+    output: input_files/genome_to_read/KY923424.1_reads.fastq.gz
+    jobid: 8
+    wildcards: sample=KY923424.1
+
+
+[Sat Apr 15 09:44:13 2023]
+rule genome_to_read:
+    input: input_files/sample_fastas/NC_028626.1.fa
+    output: input_files/genome_to_read/NC_028626.1_reads.fastq.gz
+    jobid: 4
+    wildcards: sample=NC_028626.1
+
+[Sat Apr 15 09:44:14 2023]
+Finished job 8.
+7 of 12 steps (58%) done
+[Sat Apr 15 09:44:14 2023]
+Finished job 4.
+8 of 12 steps (67%) done
+
+[Sat Apr 15 09:44:14 2023]
+rule run_nfcore:
+    input: input_files/genome_to_read/NC_028626.1_reads.fastq.gz, input_files/genome_to_read/NC_007243.1_reads.fastq.gz, input_files/genome_to_read/MZ666366.1_reads.fastq.gz, input_files/genome_to_read/MZ440348.1_reads.fastq.gz, input_files/genome_to_read/KY923424.1_reads.fastq.gz, input_files/genome_to_read/LT841393.1_reads.fastq.gz
+    output: multivcf_out/snpTable.tsv, multivcf_out/snpAlignment.fasta
+    jobid: 3
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /mnt/archgen/users/michel/plasmodium/08-phylogeny/plasmodium_phylogenies/bin/.snakemake/log/2023-04-15T094408.337199.snakemake.log

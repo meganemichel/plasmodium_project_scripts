@@ -1,0 +1,21 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	1	format_fasta
+	1	low_cov_calc
+	1	run_nfcore
+	4
+
+[Sat Apr 15 09:56:12 2023]
+rule run_nfcore:
+    input: input_files/genome_to_read/NC_028626.1_reads.fastq.gz, input_files/genome_to_read/NC_007243.1_reads.fastq.gz, input_files/genome_to_read/MZ666366.1_reads.fastq.gz, input_files/genome_to_read/MZ440348.1_reads.fastq.gz, input_files/genome_to_read/KY923424.1_reads.fastq.gz, input_files/genome_to_read/LT841393.1_reads.fastq.gz
+    output: multivcf_out/snpTable.tsv, multivcf_out/snpAlignment.fasta
+    jobid: 3
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /mnt/archgen/users/michel/plasmodium/08-phylogeny/plasmodium_phylogenies/bin/.snakemake/log/2023-04-15T095610.995038.snakemake.log

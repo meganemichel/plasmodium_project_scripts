@@ -1,0 +1,88 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	add_trait_data
+	1	alignment_filter
+	1	all
+	1	format_fasta
+	1	gather_vcfs
+	1	low_cov_calc
+	1	make_nexus
+	1	remove_bad_samples
+	1	snp_only
+	9
+
+[Sun May 21 17:19:32 2023]
+rule gather_vcfs:
+    input: eager/multivcfanalyzer/snpTable.tsv.gz, eager/multivcfanalyzer/snpAlignment.fasta.gz
+    output: multivcf_out/snpTable.tsv, multivcf_out/snpAlignment.fasta
+    jobid: 7
+
+[Sun May 21 17:19:34 2023]
+Finished job 7.
+1 of 9 steps (11%) done
+
+[Sun May 21 17:19:34 2023]
+rule format_fasta:
+    input: multivcf_out/snpTable.tsv, multivcf_out/snpAlignment.fasta
+    output: alignments/fullAlignment_noReference.fasta
+    jobid: 8
+
+[Sun May 21 17:19:38 2023]
+Finished job 8.
+2 of 9 steps (22%) done
+
+[Sun May 21 17:19:38 2023]
+rule low_cov_calc:
+    input: alignments/fullAlignment_noReference.fasta
+    output: low_cov_samples.txt, nuc_freq.txt
+    jobid: 6
+
+Removing temporary output file alignments/fullAlignment_noReference.fasta.
+Removing temporary output file nuc_freq.txt.
+[Sun May 21 17:19:41 2023]
+Finished job 6.
+3 of 9 steps (33%) done
+
+[Sun May 21 17:19:41 2023]
+rule remove_bad_samples:
+    input: low_cov_samples.txt, multivcf_out/snpTable.tsv
+    output: alignments/snpTable/snpTable_exclude_lowcov_indivs.tsv
+    jobid: 5
+
+Removing temporary output file low_cov_samples.txt.
+[Sun May 21 17:19:43 2023]
+Finished job 5.
+4 of 9 steps (44%) done
+
+[Sun May 21 17:19:43 2023]
+rule alignment_filter:
+    input: alignments/snpTable/snpTable_exclude_lowcov_indivs.tsv
+    output: alignments/partial_deletion_filter
+    jobid: 4
+
+Terminating processes on user request, this might take some time.
+[Sun May 21 17:19:44 2023]
+Error in rule alignment_filter:
+    jobid: 4
+    output: alignments/partial_deletion_filter
+    shell:
+        
+        mkdir alignments/partial_deletion_filter
+        if test -f "/mnt/archgen/users/michel/plasmodium/08-phylogeny/plasmodium_phylogenies/falciparum_mito/exclude.txt"; then
+            echo "/mnt/archgen/users/michel/plasmodium/08-phylogeny/plasmodium_phylogenies/falciparum_mito/exclude.txt exists."
+            Rscript /mnt/archgen/users/michel/plasmodium/08-phylogeny/plasmodium_phylogenies/bin/scripts/MDF/MDF.R -t /mnt/archgen/users/michel/plasmodium/08-phylogeny/plasmodium_phylogenies/falciparum_mito/exclude.txt alignments/snpTable/snpTable_exclude_lowcov_indivs.tsv 100 filtered  > alignments/partial_deletion_filter/filtered.log
+        else
+            echo "No /mnt/archgen/users/michel/plasmodium/08-phylogeny/plasmodium_phylogenies/falciparum_mito/exclude.txt."
+            Rscript /mnt/archgen/users/michel/plasmodium/08-phylogeny/plasmodium_phylogenies/bin/scripts/MDF/MDF.R alignments/snpTable/snpTable_exclude_lowcov_indivs.tsv 100 filtered  > alignments/partial_deletion_filter/filtered.log
+        fi
+        mv filtered* alignments/partial_deletion_filter
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Removing output files of failed job alignment_filter since they might be corrupted:
+alignments/partial_deletion_filter
+Complete log: /mnt/archgen/users/michel/plasmodium/08-phylogeny/plasmodium_phylogenies/bin/.snakemake/log/2023-05-21T171925.652526.snakemake.log

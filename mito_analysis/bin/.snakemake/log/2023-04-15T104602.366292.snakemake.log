@@ -1,0 +1,30 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	add_trait_data
+	1	all
+	1	make_nexus
+	3
+
+[Sat Apr 15 10:46:03 2023]
+rule make_nexus:
+    input: alignments/final
+    output: filtered_snp_alignment.nex
+    jobid: 2
+
+[Sat Apr 15 10:46:03 2023]
+Finished job 2.
+1 of 3 steps (33%) done
+
+[Sat Apr 15 10:46:03 2023]
+rule add_trait_data:
+    input: filtered_snp_alignment.nex
+    output: nexus_final.nex
+    jobid: 1
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /mnt/archgen/users/michel/plasmodium/08-phylogeny/plasmodium_phylogenies/bin/.snakemake/log/2023-04-15T104602.366292.snakemake.log

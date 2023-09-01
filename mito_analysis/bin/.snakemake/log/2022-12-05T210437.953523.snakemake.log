@@ -1,0 +1,27 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	add_trait_data
+	1	alignment_filter
+	1	all
+	1	fasta_split
+	969	genome_to_read
+	1	low_cov_calc
+	1	make_nexus
+	1	ncbi_download
+	1	remove_bad_samples
+	1	run_nfcore
+	1	snp_only
+	1	unzip_files
+	980
+
+[Mon Dec  5 21:04:41 2022]
+rule ncbi_download:
+    output: temp.gb, concat.fa
+    jobid: 979
+
+Terminating processes on user request, this might take some time.
+Cancelling snakemake on user request.

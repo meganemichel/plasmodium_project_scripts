@@ -1,0 +1,3 @@
+SyntaxError in line 45 of /mnt/archgen/users/michel/plasmodium/08-phylogeny/plasmodium_phylogenies/bin/snakefiles/nexus.smk:
+invalid syntax
+  File "/mnt/archgen/users/michel/plasmodium/08-phylogeny/plasmodium_phylogenies/bin/plasmodium_mito.smk", line 30, in <module>

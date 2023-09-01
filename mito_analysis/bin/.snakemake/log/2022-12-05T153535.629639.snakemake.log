@@ -1,0 +1,13 @@
+FileNotFoundError in line 10 of /mnt/archgen/users/michel/plasmodium/08-phylogeny/plasmodium_phylogenies/bin/snakefiles/nexus.smk:
+[Errno 2] File /mnt/archgen/users/michel/plasmodium/08-phylogeny/falciparum_nextstrain/results/multivcfanalyzer/output/snpTable.tsv does not exist: '/mnt/archgen/users/michel/plasmodium/08-phylogeny/falciparum_nextstrain/results/multivcfanalyzer/output/snpTable.tsv'
+  File "/mnt/archgen/users/michel/plasmodium/08-phylogeny/plasmodium_phylogenies/bin/plasmodium_mito.smk", line 30, in <module>
+  File "/mnt/archgen/users/michel/plasmodium/08-phylogeny/plasmodium_phylogenies/bin/snakefiles/nexus.smk", line 10, in <module>
+  File "/mnt/archgen/users/michel/plasmodium/08-phylogeny/plasmodium_phylogenies/bin/scripts/snp_table_filter.py", line 51, in <module>
+  File "/mnt/archgen/users/michel/plasmodium/08-phylogeny/plasmodium_phylogenies/bin/scripts/snp_table_filter.py", line 28, in snps_only
+  File "/usr/local/lib/python3.8/dist-packages/pandas-1.0.3-py3.8-linux-x86_64.egg/pandas/io/parsers.py", line 676, in parser_f
+  File "/usr/local/lib/python3.8/dist-packages/pandas-1.0.3-py3.8-linux-x86_64.egg/pandas/io/parsers.py", line 448, in _read
+  File "/usr/local/lib/python3.8/dist-packages/pandas-1.0.3-py3.8-linux-x86_64.egg/pandas/io/parsers.py", line 880, in __init__
+  File "/usr/local/lib/python3.8/dist-packages/pandas-1.0.3-py3.8-linux-x86_64.egg/pandas/io/parsers.py", line 1114, in _make_engine
+  File "/usr/local/lib/python3.8/dist-packages/pandas-1.0.3-py3.8-linux-x86_64.egg/pandas/io/parsers.py", line 1891, in __init__
+  File "pandas/_libs/parsers.pyx", line 374, in pandas._libs.parsers.TextReader.__cinit__
+  File "pandas/_libs/parsers.pyx", line 674, in pandas._libs.parsers.TextReader._setup_parser_source
